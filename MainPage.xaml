@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Steel.MainPage"
+             BackgroundColor="{StaticResource BackgroundColor}">
+
+    <Grid RowDefinitions="*,Auto"
+          ColumnDefinitions="*"
+          Padding="12">
+
+        <!-- Chat Content -->
+        <CollectionView Grid.Row="0"
+                        ItemsSource="{Binding Messages}"
+                        Margin="0,0,0,10">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,5"
+                           Padding="10"
+                           CornerRadius="12"
+                           BackgroundColor="{Binding IsUser, Converter={StaticResource BubbleColorConverter}}">
+                        <Label Text="{Binding Content}"
+                               TextColor="White"
+                               FontSize="16"
+                               LineBreakMode="WordWrap" />
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Input Area -->
+        <Border Grid.Row="1"
+                Style="{StaticResource FloatingInputBorder}"
+                Padding="8"
+                VerticalOptions="End"
+                HorizontalOptions="Fill">
+
+            <Grid ColumnDefinitions="*,Auto,Auto,Auto"
+                  VerticalOptions="Center"
+                  HorizontalOptions="Fill">
+
+                <!-- Text Input -->
+                <Editor x:Name="InputEditor"
+                        Grid.Column="0"
+                        Text="{Binding UserInput, Mode=TwoWay}"
+                        Placeholder="Type your message..."
+                        PlaceholderColor="{StaticResource HintTextColor}"
+                        AutoSize="TextChanges"
+                        TextColor="{StaticResource TextColor}"
+                        BackgroundColor="Transparent"
+                        FontSize="16"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Fill" />
+
+                <!-- Voice Button and Mic Animation -->
+                <Button Grid.Column="1" 
+                        x:Name="MicIdleIcon"
+                        Text="🎙️"
+                        Clicked="OnMicClicked"
+                        WidthRequest="48"
+                        HeightRequest="48"
+                        TextColor="{StaticResource MicIdle}" />
+
+                <Button Grid.Column="2" 
+                        x:Name="MicRecordingIcon"
+                        Text="🔴"
+                        WidthRequest="48"
+                        HeightRequest="48"
+                        Clicked="OnMicClicked"
+                        IsVisible="False"
+                        TextColor="{StaticResource MicActive}" />
+
+                <Button Grid.Column="3"
+                        Text="➤"
+                        Command="{Binding SendCommand}"
+                        WidthRequest="48"
+                        HeightRequest="48"
+                        CornerRadius="24"
+                        TextColor="{StaticResource AccentColor}" />
+
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>
