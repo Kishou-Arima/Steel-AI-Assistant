@@ -17,15 +17,25 @@
 ## 📦 Project Structure
 
 Steel/
+
 ├── Converters/ # UI converters (e.g., visibility, binding)
+
 ├── Models/ # Data models (Message, etc.)
+
 ├── Platforms/ # Platform-specific code
+
 ├── Resources/ # Fonts, images, styles
-├── Secrets/ # Contains secrets.json (API key config, gitignored)
+
+├── Secrets/ # (API key config)
+
 ├── Services/ # Logic layer (OpenAI integration, voice input)
+
 ├── ViewModels/ # MVVM viewmodels
+
 ├── App.xaml, MainPage.xaml # Entry point UI
+
 ├── AppShell.xaml # Navigation shell
+
 ├── MauiProgram.cs # DI & startup logic
 
 
