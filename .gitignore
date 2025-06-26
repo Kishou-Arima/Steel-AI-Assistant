@@ -364,3 +364,4 @@ FodyWeavers.xsd
 
 # API Key
 secrets.json
+/Secrets/secrets.json
